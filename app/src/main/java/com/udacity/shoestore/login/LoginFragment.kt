@@ -24,10 +24,10 @@ class LoginFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
 
         binding.logginInButton.setOnClickListener() {
-            findNavController().navigate(R.id.action_loginFragment_to_welcomeFragment)
+            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToWelcomeFragment())
         }
         binding.newLoginButton.setOnClickListener() {
-            findNavController().navigate(R.id.action_loginFragment_to_welcomeFragment)
+            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToWelcomeFragment())
         }
         return binding.root
     }

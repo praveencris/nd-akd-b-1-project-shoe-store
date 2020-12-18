@@ -10,4 +10,5 @@
     <string name="welcome_label">Welcome To Shoe Store</string>
     <string name="instructions">Instructions</string>
     <string name="shoe_list">Shoe List</string>
+    <string name="navigate_to_shoe_details">Navigate to Shoe Details</string>
 </resources>
