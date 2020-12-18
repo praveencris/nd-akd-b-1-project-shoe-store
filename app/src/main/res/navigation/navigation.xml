@@ -36,5 +36,28 @@
     <fragment
         android:id="@+id/shoeListFragment"
         android:name="com.udacity.shoestore.shoe.ShoeListFragment"
-        android:label="ShoeListFragment" />
+        android:label="ShoeListFragment" >
+        <action
+            android:id="@+id/action_shoeListFragment_to_shoeDetailsFragment"
+            app:destination="@id/shoeDetailsFragment"
+            app:popUpTo="@id/shoeListFragment" />
+        <argument
+            android:name="shoeDetails"
+            app:nullable="true"
+            app:argType="com.udacity.shoestore.models.Shoe"
+            android:defaultValue="@null" />
+        <argument
+            android:name="isDetailsSet"
+            app:argType="boolean"
+            android:defaultValue="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/shoeDetailsFragment"
+        android:name="com.udacity.shoestore.shoe.shoedetails.ShoeDetailsFragment"
+        android:label="ShoeDetailsFragment" >
+        <action
+            android:id="@+id/action_shoeDetailsFragment_to_shoeListFragment"
+            app:destination="@id/shoeListFragment"
+            app:popUpTo="@id/shoeListFragment" />
+    </fragment>
 </navigation>

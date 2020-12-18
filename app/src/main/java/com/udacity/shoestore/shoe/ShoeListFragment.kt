@@ -6,10 +6,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentShoeListBinding
-import timber.log.Timber
 
 
 /**
@@ -25,17 +25,24 @@ class ShoeListFragment : Fragment() {
         // Inflate the layout for this fragment
         val binding: FragmentShoeListBinding
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_shoe_list, container, false)
-        viewModel = ViewModelProvider(this).get(ShoeListViewModel::class.java)
+
+        viewModel=activity?.run {
+            ViewModelProvider(this).get(ShoeListViewModel::class.java)
+        }?: throw Exception("Invalid Activity")
         binding.shoeListViewModel = viewModel
         binding.setLifecycleOwner(this)
 
         binding.shoeDetailsFAB.setOnClickListener {
-            Timber.i("FAB Clicked!!")
+            findNavController().navigate(ShoeListFragmentDirections.actionShoeListFragmentToShoeDetailsFragment())
         }
-
         setHasOptionsMenu(true)
+        val args = ShoeListFragmentArgs.fromBundle(requireArguments())
+        if (args.isDetailsSet) {
+            viewModel.addShoeDetails(args.shoeDetails!!)
+        }
         return binding.root
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
@@ -46,4 +53,6 @@ class ShoeListFragment : Fragment() {
         return NavigationUI.onNavDestinationSelected(item, requireView().findNavController())
                 || super.onOptionsItemSelected(item)
     }
+
+
 }

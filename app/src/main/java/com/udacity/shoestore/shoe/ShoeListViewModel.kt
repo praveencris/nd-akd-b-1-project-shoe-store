@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.udacity.shoestore.models.Shoe
+import timber.log.Timber
 
 class ShoeListViewModel() : ViewModel() {
     private val _shoeList = MutableLiveData<List<Shoe>>()
@@ -22,6 +23,7 @@ class ShoeListViewModel() : ViewModel() {
 
     init {
         initializeShoeList()
+        Timber.i("ShoeListViewModel Initialized")
     }
 
     private fun initializeShoeList() {
@@ -87,6 +89,12 @@ class ShoeListViewModel() : ViewModel() {
                 )
             )
         )
+        _shoeList.value = shoeList
+    }
+
+    fun addShoeDetails(shoeDetail: Shoe) {
+        val shoeList = _shoeList.value as MutableList<Shoe>
+        shoeList.add(shoeDetail)
         _shoeList.value = shoeList
     }
 

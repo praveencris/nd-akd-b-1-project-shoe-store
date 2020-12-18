@@ -2,13 +2,16 @@ package com.udacity.shoestore
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.navigateUp
 import com.udacity.shoestore.databinding.ActivityMainBinding
+import com.udacity.shoestore.shoe.ShoeListViewModel
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
@@ -30,6 +33,13 @@ class MainActivity : AppCompatActivity() {
                 supportActionBar?.setDisplayHomeAsUpEnabled(false)
             }
         }
+
+        // Use the 'by viewModels()' Kotlin property delegate
+        // from the activity-ktx artifact
+        val model: ShoeListViewModel by viewModels()
+        model.shoeListString.observe(this,{
+
+        })
     }
 
     override fun onSupportNavigateUp(): Boolean {
