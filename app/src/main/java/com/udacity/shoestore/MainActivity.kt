@@ -3,9 +3,11 @@ package com.udacity.shoestore
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.navigateUp
 import com.udacity.shoestore.databinding.ActivityMainBinding
 import timber.log.Timber
 
@@ -23,10 +25,21 @@ class MainActivity : AppCompatActivity() {
         //Setup Nav controller with toolbar
         NavigationUI.setupActionBarWithNavController(this,navController)
         appBarConfiguration= AppBarConfiguration(navController.graph)
+
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            if(destination.id == R.id.shoeListFragment) {
+                supportActionBar?.setHomeButtonEnabled(false)
+                supportActionBar?.setDisplayHomeAsUpEnabled(false)
+            }
+        }
+
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = this.findNavController(R.id.my_nav_host_fragment)
-        return NavigationUI.navigateUp(navController, appBarConfiguration)
+        return navController.navigateUp(appBarConfiguration)
     }
+
 }
