@@ -12,7 +12,6 @@ import com.udacity.shoestore.databinding.ActivityMainBinding
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var appBarConfiguration : AppBarConfiguration
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,16 +24,12 @@ class MainActivity : AppCompatActivity() {
         //Setup Nav controller with toolbar
         NavigationUI.setupActionBarWithNavController(this,navController)
         appBarConfiguration= AppBarConfiguration(navController.graph)
-
-
         navController.addOnDestinationChangedListener { _, destination, _ ->
             if(destination.id == R.id.shoeListFragment) {
                 supportActionBar?.setHomeButtonEnabled(false)
                 supportActionBar?.setDisplayHomeAsUpEnabled(false)
             }
         }
-
-
     }
 
     override fun onSupportNavigateUp(): Boolean {
