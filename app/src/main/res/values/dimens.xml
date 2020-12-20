@@ -4,6 +4,7 @@
     <dimen name="small_padding">8dp</dimen>
     <dimen name="text_size">20sp</dimen>
     <dimen name="normal_text_size">16sp</dimen>
+    <dimen name="small_text_size">14sp</dimen>
     <dimen name="layout_padding">16dp</dimen>
     <dimen name="header_text_size">24sp</dimen>
     <dimen name="layout_margin_header_top">24dp</dimen>

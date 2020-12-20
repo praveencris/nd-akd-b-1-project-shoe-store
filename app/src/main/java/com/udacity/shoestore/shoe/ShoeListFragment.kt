@@ -2,15 +2,16 @@ package com.udacity.shoestore.shoe
 
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.MainViewModel
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentShoeListBinding
-import com.udacity.shoestore.models.Shoe
+import com.udacity.shoestore.databinding.ListItemShoeDeteailsBinding
 
 
 /**
@@ -38,9 +39,22 @@ class ShoeListFragment : Fragment() {
             findNavController().navigate(ShoeListFragmentDirections.actionShoeListFragmentToShoeDetailsFragment())
         }
 
+        viewModel.shoeList.observe(viewLifecycleOwner, Observer { shoeList ->
+            for (shoe in shoeList) {
+                val listItemBinding: ListItemShoeDeteailsBinding = DataBindingUtil.inflate(
+                    inflater,
+                    R.layout.list_item_shoe_deteails,
+                    container,
+                    false
+                )
+                //set binding variable
+                listItemBinding.shoe=shoe
+                //Add to  LinearLayout inside scrollview
+                binding.showListLinearLayout.addView(listItemBinding.root)
+            }
+        })
+
         setHasOptionsMenu(true)
-
-
         return binding.root
     }
 
