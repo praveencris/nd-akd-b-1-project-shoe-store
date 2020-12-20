@@ -16,7 +16,7 @@
         app:cardElevation="6dp"
         app:cardCornerRadius="8dp"
         android:layout_margin="@dimen/layout_margin">
-
+        <!--It's easy to design view using constraint layout just by drag and drop-->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layoutConstraintLayout"
             android:layout_width="match_parent"
