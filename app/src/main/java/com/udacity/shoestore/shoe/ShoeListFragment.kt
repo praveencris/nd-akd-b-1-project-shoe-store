@@ -2,12 +2,11 @@ package com.udacity.shoestore.shoe
 
 import android.os.Bundle
 import android.view.*
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.NavigationUI
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentShoeListBinding
 
@@ -17,18 +16,18 @@ import com.udacity.shoestore.databinding.FragmentShoeListBinding
  * create an instance of this fragment.
  */
 class ShoeListFragment : Fragment() {
-    private lateinit var viewModel: ShoeListViewModel
+    private val viewModel: ShoeListViewModel by activityViewModels()
+    private var _binding: FragmentShoeListBinding? = null
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val binding: FragmentShoeListBinding
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_shoe_list, container, false)
+        _binding = FragmentShoeListBinding.inflate(inflater, container, false)
 
-        viewModel=activity?.run {
-            ViewModelProvider(this).get(ShoeListViewModel::class.java)
-        }?: throw Exception("Invalid Activity")
         binding.shoeListViewModel = viewModel
         binding.setLifecycleOwner(this)
 
@@ -50,10 +49,15 @@ class ShoeListFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        requireView().findNavController().navigate(ShoeListFragmentDirections.actionShoeListFragmentToLoginFragment())
+        requireView().findNavController()
+            .navigate(ShoeListFragmentDirections.actionShoeListFragmentToLoginFragment())
         return /*NavigationUI.onNavDestinationSelected(item, requireView().findNavController())
                 ||*/ super.onOptionsItemSelected(item)
     }
 
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        // Reset the binding when fragment's view gets destroyed to avoid memory leaks
+        _binding = null
+    }
 }

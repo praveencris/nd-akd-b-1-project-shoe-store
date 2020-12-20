@@ -9,19 +9,21 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentLoginBinding
+import com.udacity.shoestore.databinding.FragmentWelcomeBinding
 
 /**
  * A simple [Fragment] subclass.
  * create an instance of this fragment.
  */
 class LoginFragment : Fragment() {
+    private var _binding: FragmentLoginBinding? = null
+    private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val binding: FragmentLoginBinding
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
 
         binding.logginInButton.setOnClickListener() {
             findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToWelcomeFragment())
@@ -30,5 +32,11 @@ class LoginFragment : Fragment() {
             findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToWelcomeFragment())
         }
         return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        // Reset the binding when fragment's view gets destroyed to avoid memory leaks
+        _binding=null
     }
 }

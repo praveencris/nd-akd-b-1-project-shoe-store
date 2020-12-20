@@ -10,19 +10,21 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentShoeDetailsBinding
+import com.udacity.shoestore.databinding.FragmentShoeListBinding
 import com.udacity.shoestore.models.Shoe
 
 
 class ShoeDetailsFragment : Fragment() {
+    private var _binding: FragmentShoeDetailsBinding? = null
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val binding: FragmentShoeDetailsBinding
-        binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_shoe_details, container, false)
-
+        _binding = FragmentShoeDetailsBinding.inflate(inflater, container, false)
         binding.cancelButton.setOnClickListener {
             findNavController().navigate(ShoeDetailsFragmentDirections.actionShoeDetailsFragmentToShoeListFragment())
         }
@@ -58,5 +60,11 @@ class ShoeDetailsFragment : Fragment() {
             return Pair(false, "Enter Shoe Description")
         }
         return Pair(true, null)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        // Reset the binding when fragment's view gets destroyed to avoid memory leaks
+        _binding=null
     }
 }
