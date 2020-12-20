@@ -18,6 +18,7 @@
             android:layout_height="match_parent"
             tools:context=".shoe.ShoeListFragment">
 
+            <!--Adding views in vertical orientation dynamically, so use of linearLayout seems to be developer friendly-->
             <LinearLayout
                 android:id="@+id/showListLinearLayout"
                 android:layout_width="match_parent"
