@@ -43,15 +43,6 @@
             app:destination="@id/shoeDetailsFragment"
             app:launchSingleTop="true"
             app:popUpTo="@id/shoeListFragment" />
-        <argument
-            android:name="shoeDetails"
-            app:nullable="true"
-            app:argType="com.udacity.shoestore.models.Shoe"
-            android:defaultValue="@null" />
-        <argument
-            android:name="isDetailsSet"
-            app:argType="boolean"
-            android:defaultValue="false" />
         <action
             android:id="@+id/action_shoeListFragment_to_loginFragment"
             app:destination="@id/loginFragment"

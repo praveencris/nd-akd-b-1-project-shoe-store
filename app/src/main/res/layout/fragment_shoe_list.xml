@@ -3,46 +3,48 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-      <variable
-          name="shoeListViewModel"
-          type="com.udacity.shoestore.shoe.ShoeListViewModel" />
+        <variable
+            name="mainViewModel"
+            type="com.udacity.shoestore.MainViewModel" />
     </data>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <ScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".shoe.ShoeListFragment">
 
-        <LinearLayout
-            android:id="@+id/showListLinearLayout"
+        <ScrollView
+            android:id="@+id/scrollView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/layout_margin"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            tools:context=".shoe.ShoeListFragment">
 
-            <TextView
-                android:id="@+id/shoeDescText"
-                style="@style/NameStyle"
-                android:textSize="16sp"
+            <LinearLayout
+                android:id="@+id/showListLinearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{shoeListViewModel.shoeListString}"
-                tools:text="Bata: size:8 " />
-        </LinearLayout>
+                android:layout_margin="@dimen/layout_margin"
+                android:orientation="vertical">
 
-    </ScrollView>
+                <TextView
+                    android:id="@+id/shoeDescText"
+                    style="@style/NameStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{mainViewModel.shoeListString}"
+                    android:textSize="16sp"
+                    tools:text="Bata: size:8 " />
+            </LinearLayout>
+
+        </ScrollView>
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/shoeDetailsFAB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_details"
-            android:foregroundGravity="center"
-            android:layout_margin="@dimen/layout_margin"
             android:layout_gravity="bottom|end"
-            android:contentDescription="@string/navigate_to_shoe_details" />
+            android:layout_margin="@dimen/layout_margin"
+            android:contentDescription="@string/navigate_to_shoe_details"
+            android:foregroundGravity="center"
+            android:src="@drawable/ic_details" />
     </FrameLayout>
 </layout>
