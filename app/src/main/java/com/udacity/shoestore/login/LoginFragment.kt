@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentLoginBinding
-import com.udacity.shoestore.databinding.FragmentWelcomeBinding
 
 /**
  * A simple [Fragment] subclass.
@@ -23,7 +22,7 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
+        _binding = FragmentLoginBinding.inflate(inflater, container, false)
 
         binding.logginInButton.setOnClickListener() {
             findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToWelcomeFragment())
@@ -37,6 +36,6 @@ class LoginFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         // Reset the binding when fragment's view gets destroyed to avoid memory leaks
-        _binding=null
+        _binding = null
     }
 }
