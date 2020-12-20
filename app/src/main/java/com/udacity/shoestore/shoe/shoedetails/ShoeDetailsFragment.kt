@@ -33,14 +33,7 @@ class ShoeDetailsFragment : Fragment() {
             saveButton.setOnClickListener {
                 val pair: Pair<Boolean, String?> = viewModel.isValidInputs()
                 if (pair.first) {
-                    val shoe = Shoe(
-                        viewModel.shoe.name,
-                        viewModel.shoe.size,
-                        viewModel.shoe.company,
-                        viewModel.shoe.description,
-                        mutableListOf("")
-                    )
-                    viewModel.addShoeDetails(shoe)
+                    viewModel.addShoeDetails(viewModel.shoe)
                     viewModel.resetShoe()
                     findNavController().navigate(ShoeDetailsFragmentDirections.actionShoeDetailsFragmentToShoeListFragment())
                 } else {
