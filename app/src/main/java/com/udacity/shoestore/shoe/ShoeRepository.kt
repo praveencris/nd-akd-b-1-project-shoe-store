@@ -9,7 +9,7 @@ object ShoeRepository {
     private val shoeDetailsList: MutableList<Shoe> = mutableListOf(
         Shoe(
             "Sneakers",
-            "9.0",
+            9.0,
             "Nike",
             "Sneakers are like the comfort food we all crave for. This lightweight and simple footwear are a must-have for everyone. They are not only comfortable but also go with every look. There are so many colors and patterns available that you can find a match for your every outfit. If you are planning on exploring the city and looking for a comfy pair of shoes, then sneakers are the way to go.",
             mutableListOf(
@@ -19,7 +19,7 @@ object ShoeRepository {
         ),
         Shoe(
             "Boots",
-            "8.0",
+            8.0,
             "Adidas",
             "Boots are not only classy but stylish as well. They portray a regal style that suits everyone. No matter what you are wearing – tailored trousers, a denim skirt, or jeans, boots go with every look. There are different types of boots like ankle boots, calf boots, military boots, leather boots, and hiking boots.",
             mutableListOf(
@@ -29,7 +29,7 @@ object ShoeRepository {
         ),
         Shoe(
             "Flip-flops",
-            "7.0",
+            7.0,
             "Adidas",
             "Flip-flops are the ultimate footwear for the summer season. Flip-flops are versatile and easy to manage. Not to mention the fact that you will not have to spend hours trying to get the sand out of them. Flip-flops are a popular choice of footwear for men, women, and children alike.",
             mutableListOf(
@@ -39,7 +39,7 @@ object ShoeRepository {
         ),
         Shoe(
             "Slippers",
-            "10.0",
+            10.0,
             "Woodland",
             "The summer ones could be furry, adorable, and comfy. While the winter one should have padding to keep your feet warm and cozy when you get out of your warm and comfy bed",
             mutableListOf(
@@ -49,7 +49,7 @@ object ShoeRepository {
         ),
         Shoe(
             "Crocs",
-            "9.0",
+            9.0,
             "Puma",
             "This footwear is very popular among travel enthusiasts as they need comfy shoes during their hectic days.",
             mutableListOf(
@@ -59,7 +59,7 @@ object ShoeRepository {
         ),
         Shoe(
             "Cleats",
-            "11.0",
+            11.0,
             "Spark",
             "If you enjoy playing sports, especially soccer, then you need to invest in some cleats. A lot of people wear their sneakers or joggers, but that is not right. Sure, they provide your feet with comfort, but cleats go one step further than that. It not only gives your feet the comfort it needs, but it also provides you with stability and speed. There will be no missed goals when you are playing soccer wearing your brand-new cleats. Cleats give you the much-needed traction on the soccer ground and will help you get the MVP award.",
             mutableListOf(
@@ -75,7 +75,7 @@ object ShoeRepository {
     val shoeListString = Transformations.map(shoeList) { shoeList ->
         var shoeListString = ""
         for (shoe in shoeList) {
-            shoeListString += "Name: ${shoe.name}, Brand: ${shoe.company}, Size: ${shoe.size}\nDescription: ${shoe.description}\n\n\n"
+            shoeListString += "Name: ${shoe.name}, Brand: ${shoe.company}, Size: ${shoe.getSize()}\nDescription: ${shoe.description}\n\n\n"
         }
         shoeListString
     }

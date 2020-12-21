@@ -1,10 +1,26 @@
 package com.udacity.shoestore.models
 
-import android.os.Parcelable
-import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
-import kotlinx.android.parcel.Parcelize
+import androidx.databinding.Observable
+import androidx.databinding.PropertyChangeRegistry
 
-@Parcelize
-data class Shoe( var name: String,  var size: String,  var company: String,  var description: String,
-                val images: List<String> = mutableListOf()) : Parcelable
+
+data class Shoe(
+    var name: String,private var size: Double, var company: String, var description: String,
+    val images: List<String> = mutableListOf()
+)  {
+    fun getSize(): String {
+        if (size <= 0.0) {
+            return ""
+        }
+        return size.toString()
+    }
+
+    fun setSize(newSize: String) {
+        if (newSize.isEmpty()) {
+            size = 0.0
+        } else {
+            size = newSize.toDouble()
+        }
+    }
+}

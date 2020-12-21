@@ -13,12 +13,12 @@ class MainViewModel : ViewModel() {
 
     fun addShoeDetails(shoeDetail: Shoe) = ShoeRepository.addShoeDetails(shoeDetail)
 
-    private var _shoe: Shoe = Shoe("", "", "", "", mutableListOf(""))
+    private var _shoe: Shoe = Shoe("", 0.0, "", "", mutableListOf(""))
     val shoe: Shoe
         get() = _shoe
 
     fun resetShoe() {
-        _shoe = Shoe("", "", "", "", mutableListOf(""))
+        _shoe = Shoe("", 0.0, "", "", mutableListOf(""))
     }
 
     fun isValidInputs(): Pair<Boolean, String?> {
@@ -28,7 +28,7 @@ class MainViewModel : ViewModel() {
         if (shoe.company.isEmpty()) {
             return Pair(false, "Enter Company Name")
         }
-        if (shoe.size.isEmpty()) {
+        if (shoe.getSize().isEmpty()) {
             return Pair(false, "Enter Shoe Size")
         }
         if (shoe.description.isEmpty()) {
