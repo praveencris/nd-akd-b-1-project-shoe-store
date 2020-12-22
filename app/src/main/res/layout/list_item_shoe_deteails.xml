@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="com.udacity.shoestore.shoe.Converter"/>
         <variable
             name="shoe"
             type="com.udacity.shoestore.models.Shoe" />
@@ -80,7 +81,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="@{shoe.size}"
+                android:text="@{Converter.doubleToString(shoe.size)}"
                 app:layout_constraintBottom_toBottomOf="@+id/sizeLabelTextView"
                 app:layout_constraintStart_toEndOf="@+id/sizeLabelTextView"
                 app:layout_constraintTop_toTopOf="@+id/sizeLabelTextView"

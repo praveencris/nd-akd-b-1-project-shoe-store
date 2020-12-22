@@ -28,7 +28,7 @@ class MainViewModel : ViewModel() {
         if (shoe.company.isEmpty()) {
             return Pair(false, "Enter Company Name")
         }
-        if (shoe.getSize().isEmpty()) {
+        if (shoe.getSize()<=0.0) {
             return Pair(false, "Enter Shoe Size")
         }
         if (shoe.description.isEmpty()) {
