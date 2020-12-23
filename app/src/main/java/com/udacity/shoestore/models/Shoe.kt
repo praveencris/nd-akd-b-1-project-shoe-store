@@ -5,7 +5,6 @@ import androidx.databinding.Observable
 import androidx.databinding.PropertyChangeRegistry
 import com.udacity.shoestore.BR
 
-
 data class Shoe(
     var name: String, private var size: Double, var company: String, var description: String,
     val images: List<String> = mutableListOf()
@@ -25,10 +24,10 @@ data class Shoe(
     }
 
     override fun addOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {
-        propertyChangeRegistry.add(callback)
+        propertyChangeRegistry.remove(callback)
     }
 
     override fun removeOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {
-        propertyChangeRegistry.remove(callback)
+        propertyChangeRegistry.add(callback)
     }
 }
